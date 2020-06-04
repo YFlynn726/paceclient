@@ -1,0 +1,43 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  color: #444;
+  text-align: center;
+  line-height: 1.5;
+  min-width: 320px;
+}
+
+.record-pace {
+  text-align: center;
+  /* margin: 50px; */
+  padding: 25px;
+}
+
+.text {
+  width: 100%;
+  max-width: 500px;
+}
+
+.number {
+  width: 30px;
+}
+
+.add {
+  display: block;
+}
+
+.form-section {
+  margin-bottom: 30px;
+}
+
+.text {
+  font-size: 14px;
+}
+
+.date-section {
+  margin-bottom: 15px;
+}
+
+.pace-container {
+  margin-bottom: 15px;
+}

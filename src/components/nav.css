@@ -1,0 +1,55 @@
+li {
+  color: white;
+  padding-right: 35px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  min-height: 10vh;
+  background: rgb(9, 117, 94);
+  color: white;
+  padding: 15px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  font-size: 16px;
+  padding-left: 0px;
+  margin-bottom: 0px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.logo {
+  color: white;
+  font-size: 26px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  font-family: "Pacifico", cursive;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .dash {
+    float: right;
+  }
+  .nav-links {
+    margin: 0px;
+    padding: 0px;
+    font-size: 24px;
+  }
+
+  .logo {
+    float: left;
+    font-size: 50px;
+  }
+
+  .nav-container {
+    padding: 25px;
+  }
+}
