@@ -27,12 +27,12 @@ class UserDetail extends Component {
       );
     });
     return (
-      <div>
+      <div className="userinfo-container">
         <h1>Welcome to your log!</h1>
-        <ul>{records}</ul>
         <Link to={"/addpace"}>
           <input type="button" value="Add A Pace Entry" />
         </Link>{" "}
+        <ul>{records}</ul>
       </div>
     );
   }

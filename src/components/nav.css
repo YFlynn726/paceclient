@@ -1,6 +1,6 @@
-li {
+.dash {
   color: white;
-  padding-right: 35px;
+  padding-right: 10px;
 }
 
 .nav-container {
@@ -11,7 +11,7 @@ li {
   min-height: 10vh;
   background: rgb(9, 117, 94);
   color: white;
-  padding: 15px;
+  /* padding: 15px; */
 }
 
 .nav-links {
@@ -31,12 +31,14 @@ li {
   margin-bottom: 0px;
   margin-top: 0px;
   font-family: "Pacifico", cursive;
+  padding-left: 10px;
 }
 
 @media only screen and (min-width: 768px) {
   /* For desktop: */
   .dash {
     float: right;
+    padding-right: 15px;
   }
   .nav-links {
     margin: 0px;
@@ -50,6 +52,6 @@ li {
   }
 
   .nav-container {
-    padding: 25px;
+    padding: 5px;
   }
 }

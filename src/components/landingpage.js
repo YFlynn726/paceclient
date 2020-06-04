@@ -58,17 +58,22 @@ class LandingPage extends Component {
     const validationError = error ? <ValidationError message={error} /> : "";
     return (
       <div className="Landing">
+        <h1>Welcome to Pace!</h1>
+        <h2>Do you wonder how you perform on your runs overtime? </h2>
+
         {/* <h1 className="logo2">Pace!</h1> */}
-        <iframe
-          title="run forest run"
-          src="https://giphy.com/embed/l2Sqc3POpzkj5r8SQ"
-          width="480"
-          height="201"
-          frameBorder="0"
-          className="giphy-embed"
-          samesite="secure"
-          allowFullScreen
-        ></iframe>
+        <div className="iframe-container">
+          <iframe
+            title="run forest run"
+            src="https://giphy.com/embed/l2Sqc3POpzkj5r8SQ"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            className="giphy-embed"
+            samesite="secure"
+            allowFullScreen
+          ></iframe>
+        </div>
         {/* <p>
           <a href="https://giphy.com/gifs/run-forrest-gump-l2Sqc3POpzkj5r8SQ">
             Does he run like this all the time?
@@ -76,7 +81,6 @@ class LandingPage extends Component {
         </p> */}
 
         <section>
-          <h2>Do you wonder how you perform on your runs overtime? </h2>
           <h2>
             Have you improved your average pace? Are you consistent? Or have you
             regressed?{" "}
