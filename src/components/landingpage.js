@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import PaceContext from "./PaceContext";
 import "./landingpage.css";
 import ValidationError from "./ValidateError";
 
 class LandingPage extends Component {
+  static contextType = PaceContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -29,10 +32,16 @@ class LandingPage extends Component {
     const isValid = this.validateName();
     if (!isValid.error) {
       //update DB
-      alert(`${this.state.first_name} ${this.state.last_name}`);
+      this.addUser();
     } else {
       this.updateError(isValid.value);
     }
+  };
+
+  addUser = () => {
+    //update context
+    this.context.addUser(this.state.first_name, this.state.last_name);
+    this.props.history.push("/welcome");
   };
 
   updateError = (err) => {

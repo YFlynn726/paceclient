@@ -1,14 +1,20 @@
 import React, { Component } from "react";
+import PaceContext from "./PaceContext";
 import "./addPace.css";
-import STORE from "./dummy-info";
+//import STORE from "./dummy-info";
 
 class AddPace extends Component {
-  state = {
-    user_id: "",
-    date: "",
-    pace: "",
-    content: "",
-  };
+  static contextType = PaceContext;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      user_id: "",
+      date: "",
+      pace: "",
+      content: "",
+    };
+  }
 
   handleDateChange = (event) => {
     this.setState({
@@ -36,13 +42,22 @@ class AddPace extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    alert(
-      `${this.state.user_id} ${this.state.pace} ${this.state.date} ${this.state.content}`
+    this.addItem();
+  };
+
+  addItem = () => {
+    this.context.addItem(
+      this.state.date,
+      this.state.pace,
+      this.state.content,
+      this.state.user_id
     );
+    this.props.history.push("/welcome");
   };
 
   render() {
-    let options = STORE.users.map((user) => {
+    //access context
+    let options = this.context.users.map((user) => {
       return (
         <option key={user.id} value={user.id}>
           {user.first_name} {user.last_name}
@@ -87,6 +102,7 @@ class AddPace extends Component {
               placeholder="9.32"
               min="1"
               max="20"
+              required
               onChange={this.handlePaceChange}
             />
           </div>
