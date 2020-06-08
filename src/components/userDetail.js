@@ -2,10 +2,10 @@ import React, { Component } from "react";
 //import STORE from "./dummy-info";
 import { Link } from "react-router-dom";
 import PaceContext from "./PaceContext";
-import { Modal, Button } from "antd";
+import { Modal } from "antd";
 import moment from "moment";
 import config from "../config";
-
+import "./userdetail.css";
 import {
   LineChart,
   Line,
@@ -15,8 +15,6 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-
-import "./userdetail.css";
 
 const data = [
   {
@@ -73,33 +71,21 @@ class UserDetail extends Component {
             return item.user_id == userId;
           })
           .map((item) => {
-            return [item.date, item.pace];
+            let newItem = {};
+            newItem.pace = item.pace;
+            newItem.date = moment(item.date).format("MM/DD/YYYY");
+
+            return newItem;
           });
         console.log(response);
-
+        let graphData = response;
         this.setState({
-          response: [items.date, items.pace],
+          graphData: [items.pace, items.date],
         });
-        console.log(items);
-        //console.log(graphData);
+        //console.log(items);
+        console.log(graphData);
       });
   }
-
-  // getFormattedDate = (dateString) => {
-  //   var todayTime = new Date(dateString);
-  //   var month = format(todayTime.getMonth() + 1);
-  //   var day = format(todayTime.getDate());
-  //   var year = format(todayTime.getFullYear());
-  //   return month + "/" + day + "/" + year;
-  // };
-
-  // getFormattedDate = (date) => {
-  //   let year = date.getFullYear();
-  //   let month = (1 + date.getMonth()).toString().padStart(2, "0");
-  //   let day = date.getDate().toString().padStart(2, "0");
-
-  //   return month + "/" + day + "/" + year;
-  // };
 
   showModal = (item) => {
     this.setState({
@@ -254,11 +240,11 @@ class UserDetail extends Component {
     return (
       <div className="userinfo-container">
         <h1>Welcome to your log!</h1>
-        {this.state.response && (
+        {this.state.graphData && (
           <LineChart
             width={500}
             height={300}
-            data={this.state.response}
+            data={this.state.graphData}
             margin={{
               top: 5,
               right: 30,
