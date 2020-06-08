@@ -4,8 +4,44 @@ import { Link } from "react-router-dom";
 import PaceContext from "./PaceContext";
 import { Modal, Button } from "antd";
 import moment from "moment";
+import config from "../config";
+
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from "recharts";
 
 import "./userdetail.css";
+
+const data = [
+  {
+    pace: "13.24",
+    date: " 03/24/2020",
+  },
+  {
+    pace: "7.24",
+    date: "04/23/2020",
+  },
+  {
+    pace: "9.34",
+    date: "05/23/2020",
+  },
+];
+
+//fetch item for user
+//loop through items to look like hard coded data list
+//update state data
+
+// fetch(`${config.API_ENDPOINT}api/items`).then(([itemsRes]) => {
+//   if (!itemsRes.ok) return itemsRes.json().then((e) => Promise.reject(e));
+
+//   return [itemsRes.json()];
+// });
 
 class UserDetail extends Component {
   static contextType = PaceContext;
@@ -20,6 +56,23 @@ class UserDetail extends Component {
       content: "",
     };
   }
+
+  componentDidMount() {
+    fetch(`${config.API_ENDPOINT}api/items`)
+      .then((itemsRes) => {
+        if (!itemsRes.ok) return itemsRes.json().then((e) => Promise.reject(e));
+
+        return itemsRes.json();
+      })
+      .then((items) => {
+        //loop through and collect info I need
+        this.setState({
+          graphData: [items.date, items.pace],
+        });
+        console.log(items);
+      });
+  }
+
   showModal = (item) => {
     this.setState({
       visible: true,
@@ -173,6 +226,32 @@ class UserDetail extends Component {
     return (
       <div className="userinfo-container">
         <h1>Welcome to your log!</h1>
+        {this.state.graphData && (
+          <LineChart
+            width={500}
+            height={300}
+            data={this.state.graphData}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" />
+            <YAxis dataKey="pace" />
+            <Tooltip />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="date"
+              stroke="#8884d8"
+              activeDot={{ r: 8 }}
+            />
+            <Line type="monotone" dataKey="pace" stroke="#82ca9d" />
+          </LineChart>
+        )}
         <Link to={"/addpace"}>
           <input type="button" value="Add A Pace Entry" />
         </Link>{" "}
