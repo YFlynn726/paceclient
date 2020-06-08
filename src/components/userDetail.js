@@ -65,13 +65,29 @@ class UserDetail extends Component {
         return itemsRes.json();
       })
       .then((items) => {
-        //loop through and collect info I need
+        //let graphData = this.context.items();
         this.setState({
           graphData: [items.date, items.pace],
         });
-        console.log(items);
+        console.log(graphData);
       });
   }
+
+  // getFormattedDate = (dateString) => {
+  //   var todayTime = new Date(dateString);
+  //   var month = format(todayTime.getMonth() + 1);
+  //   var day = format(todayTime.getDate());
+  //   var year = format(todayTime.getFullYear());
+  //   return month + "/" + day + "/" + year;
+  // };
+
+  // getFormattedDate = (date) => {
+  //   let year = date.getFullYear();
+  //   let month = (1 + date.getMonth()).toString().padStart(2, "0");
+  //   let day = date.getDate().toString().padStart(2, "0");
+
+  //   return month + "/" + day + "/" + year;
+  // };
 
   showModal = (item) => {
     this.setState({
