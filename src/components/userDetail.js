@@ -65,11 +65,23 @@ class UserDetail extends Component {
         return itemsRes.json();
       })
       .then((items) => {
-        //let graphData = this.context.items();
+        let response = items
+          .filter((item) => {
+            const userId = this.props.match.params.user_id;
+
+            // eslint-disable-next-line eqeqeq
+            return item.user_id == userId;
+          })
+          .map((item) => {
+            return [item.date, item.pace];
+          });
+        console.log(response);
+
         this.setState({
-          graphData: [items.date, items.pace],
+          response: [items.date, items.pace],
         });
-        console.log(graphData);
+        console.log(items);
+        //console.log(graphData);
       });
   }
 
@@ -242,11 +254,11 @@ class UserDetail extends Component {
     return (
       <div className="userinfo-container">
         <h1>Welcome to your log!</h1>
-        {this.state.graphData && (
+        {this.state.response && (
           <LineChart
             width={500}
             height={300}
-            data={this.state.graphData}
+            data={this.state.response}
             margin={{
               top: 5,
               right: 30,
