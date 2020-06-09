@@ -215,36 +215,38 @@ class UserDetail extends Component {
     return (
       <div className="userinfo-container">
         <h1>Pace Record</h1>
-        {this.state.graphData && (
-          <LineChart
-            width={600}
-            height={300}
-            data={this.state.graphData}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis dataKey="pace" />
-            <Tooltip />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="date"
-              stroke="#7094db"
-              activeDot={{ r: 8 }}
-            />
-            <Line type="monotone" dataKey="pace" stroke="#7094db" />
-          </LineChart>
-        )}
+        <div className="graph">
+          {this.state.graphData && (
+            <LineChart
+              width={360}
+              height={200}
+              data={this.state.graphData}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis dataKey="pace" />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="date"
+                stroke="#7094db"
+                activeDot={{ r: 8 }}
+              />
+              <Line type="monotone" dataKey="pace" stroke="#7094db" />
+            </LineChart>
+          )}
+        </div>
         <Link to={"/addpace"}>
           <input type="button" value="Add A Pace Entry" />
         </Link>{" "}
-        <ul>{records}</ul>
+        <ul className="recordlist">{records}</ul>
       </div>
     );
   }

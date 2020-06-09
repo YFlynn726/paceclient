@@ -71,14 +71,15 @@ class LandingPage extends Component {
         <h2>Do you wonder how you perform on your runs overtime? </h2>
 
         {/* <h1 className="logo2">Pace!</h1> */}
-        <div className="iframe-container">
+        <div className="iframecontainer">
           <iframe
+            className="iframebox"
             title="running shoes"
             src="https://giphy.com/embed/3oEjHW5ZfmQsI2rUuk"
-            width="480"
-            height="360"
+            width="580"
+            height="460"
             frameBorder="0"
-            className="giphy-embed"
+            // className="giphy-embed"
             allowFullScreen
           ></iframe>
         </div>

@@ -9,10 +9,25 @@
   border-radius: 10px;
 }
 
+.recordlist {
+  padding-left: 0;
+}
+
 .userinfo-container {
   padding-bottom: 30px;
 }
 
 .edit {
   margin-right: 5px;
+}
+
+.graph {
+  padding-right: 60px;
+}
+
+@media only screen and (min-width: 768px) {
+  /* .graph {
+    width: 600px;
+    height: 300px;
+  } */
 }
