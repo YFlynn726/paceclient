@@ -16,31 +16,6 @@ import {
   Legend,
 } from "recharts";
 
-const data = [
-  {
-    pace: "13.24",
-    date: " 03/24/2020",
-  },
-  {
-    pace: "7.24",
-    date: "04/23/2020",
-  },
-  {
-    pace: "9.34",
-    date: "05/23/2020",
-  },
-];
-
-//fetch item for user
-//loop through items to look like hard coded data list
-//update state data
-
-// fetch(`${config.API_ENDPOINT}api/items`).then(([itemsRes]) => {
-//   if (!itemsRes.ok) return itemsRes.json().then((e) => Promise.reject(e));
-
-//   return [itemsRes.json()];
-// });
-
 class UserDetail extends Component {
   static contextType = PaceContext;
 
@@ -48,6 +23,7 @@ class UserDetail extends Component {
     super(props);
     this.state = {
       currentItem: "",
+      // currentUser: "",
       visible: false,
       pace: "",
       date: "",
@@ -77,13 +53,10 @@ class UserDetail extends Component {
 
             return newItem;
           });
-        console.log(response);
         let graphData = response;
         this.setState({
-          graphData: [items.pace, items.date],
+          graphData: graphData,
         });
-        //console.log(items);
-        console.log(graphData);
       });
   }
 
@@ -239,10 +212,10 @@ class UserDetail extends Component {
     });
     return (
       <div className="userinfo-container">
-        <h1>Welcome to your log!</h1>
+        <h1>Pace Record</h1>
         {this.state.graphData && (
           <LineChart
-            width={500}
+            width={600}
             height={300}
             data={this.state.graphData}
             margin={{

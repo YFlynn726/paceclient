@@ -93,21 +93,6 @@ class App extends Component {
       })
       .then((data) => {
         this.fetchInIt();
-        // const items = this.state.items.map((entry) => {
-        //   if (entry.id === item.id) {
-        //     return {
-        //       ...item,
-        //       date: updatedItem.date,
-        //       pace: updatedItem.pace,
-        //       content: updatedItem.content,
-        //     };
-        //   } else {
-        //     return item;
-        //   }
-        // });
-        // this.setState({
-        //   items,
-        // });
       })
       .catch((error) => {
         console.log("Request failure: ", error);
