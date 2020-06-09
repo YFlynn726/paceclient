@@ -2,7 +2,7 @@ import React, { Component } from "react";
 //import STORE from "./dummy-info";
 import { Link } from "react-router-dom";
 import PaceContext from "../PaceContext";
-import { Modal } from "antd";
+import { Modal, Row, Col } from "antd";
 import moment from "moment";
 import config from "../../config";
 import "./userdetail.css";
@@ -215,34 +215,38 @@ class UserDetail extends Component {
     return (
       <div className="userinfo-container">
         <h1>Pace Record</h1>
-        <div className="graph">
-          {this.state.graphData && (
-            <LineChart
-              width={360}
-              height={200}
-              data={this.state.graphData}
-              margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
-              }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis dataKey="pace" />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="date"
-                stroke="#7094db"
-                activeDot={{ r: 8 }}
-              />
-              <Line type="monotone" dataKey="pace" stroke="#7094db" />
-            </LineChart>
-          )}
-        </div>
+        <Row align={"center"} type={"flex"}>
+          <Col>
+            <div className="graph">
+              {this.state.graphData && (
+                <LineChart
+                  width={360}
+                  height={200}
+                  data={this.state.graphData}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="date" />
+                  <YAxis dataKey="pace" />
+                  <Tooltip />
+                  <Legend />
+                  <Line
+                    type="monotone"
+                    dataKey="date"
+                    stroke="#7094db"
+                    activeDot={{ r: 8 }}
+                  />
+                  <Line type="monotone" dataKey="pace" stroke="#7094db" />
+                </LineChart>
+              )}
+            </div>
+          </Col>
+        </Row>
         <Link to={"/addpace"}>
           <input type="button" value="Add A Pace Entry" />
         </Link>{" "}
