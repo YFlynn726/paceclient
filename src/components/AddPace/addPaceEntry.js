@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PaceContext from "./PaceContext";
+import PaceContext from "../PaceContext";
 import "./addPace.css";
 //import STORE from "./dummy-info";
 

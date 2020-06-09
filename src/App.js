@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import LandingPage from "./components/landingpage";
-import WelcomePage from "./components/welcomepage";
-import AddPace from "./components/addPaceEntry";
-import UserDetail from "./components/userDetail";
-import Nav from "./components/Nav";
+import LandingPage from "./components/Landingpage/landingpage";
+import WelcomePage from "./components/WelcomePage/welcomepage";
+import AddPace from "./components/AddPace/addPaceEntry";
+import UserDetail from "./components/UserDetail/userDetail";
+import Nav from "./components/Nav/Nav";
 import config from "./config";
 import BoundaryError from "./components/BoundaryError";
 import "./app.css";

@@ -3,7 +3,7 @@
 .userdetails {
   color: black;
   border-style: solid;
-  border-color: darkcyan;
+  border-color: rgb(39, 97, 163);
   margin: 25px;
   padding: 5px;
   border-radius: 10px;
@@ -11,4 +11,8 @@
 
 .userinfo-container {
   padding-bottom: 30px;
+}
+
+.edit {
+  margin-right: 5px;
 }

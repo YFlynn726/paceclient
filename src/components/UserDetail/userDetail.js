@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 //import STORE from "./dummy-info";
 import { Link } from "react-router-dom";
-import PaceContext from "./PaceContext";
+import PaceContext from "../PaceContext";
 import { Modal } from "antd";
 import moment from "moment";
-import config from "../config";
+import config from "../../config";
 import "./userdetail.css";
 import {
   LineChart,
@@ -147,10 +147,12 @@ class UserDetail extends Component {
           </li>
           <li className="users">Pace: {item.pace}</li>
           <li className="users">Run Experience: {item.content} </li>
-          <button onClick={() => this.showModal(item)}>Edit</button>
+          <button className="edit" onClick={() => this.showModal(item)}>
+            Edit
+          </button>
 
           <Modal
-            title="Basic Modal"
+            title="Edit Pace Record"
             visible={this.state.visible}
             // onSubmit={this.handleSubmit}
             onOk={this.handleOk}
@@ -233,10 +235,10 @@ class UserDetail extends Component {
             <Line
               type="monotone"
               dataKey="date"
-              stroke="#8884d8"
+              stroke="#7094db"
               activeDot={{ r: 8 }}
             />
-            <Line type="monotone" dataKey="pace" stroke="#82ca9d" />
+            <Line type="monotone" dataKey="pace" stroke="#7094db" />
           </LineChart>
         )}
         <Link to={"/addpace"}>

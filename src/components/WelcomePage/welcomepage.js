@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./welcomepage.css";
 import { Link } from "react-router-dom";
-import PaceContext from "./PaceContext";
+import PaceContext from "../PaceContext";
 //import STORE from "./dummy-info";
 
 class WelcomePage extends Component {

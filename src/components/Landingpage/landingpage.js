@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import PaceContext from "./PaceContext";
+import PaceContext from "../PaceContext";
 import "./landingpage.css";
-import ValidationError from "./ValidateError";
+import ValidationError from "../ValidateError";
 
 class LandingPage extends Component {
   static contextType = PaceContext;
@@ -73,21 +73,15 @@ class LandingPage extends Component {
         {/* <h1 className="logo2">Pace!</h1> */}
         <div className="iframe-container">
           <iframe
-            title="run forest run"
-            src="https://giphy.com/embed/l2Sqc3POpzkj5r8SQ"
-            width="100%"
-            height="100%"
+            title="running shoes"
+            src="https://giphy.com/embed/3oEjHW5ZfmQsI2rUuk"
+            width="480"
+            height="360"
             frameBorder="0"
             className="giphy-embed"
-            samesite="secure"
             allowFullScreen
           ></iframe>
         </div>
-        {/* <p>
-          <a href="https://giphy.com/gifs/run-forrest-gump-l2Sqc3POpzkj5r8SQ">
-            Does he run like this all the time?
-          </a>
-        </p> */}
 
         <section>
           <h2>
@@ -105,11 +99,12 @@ class LandingPage extends Component {
         </section>
 
         <section>
-          Register Here!
-          <form className="signup-form" onSubmit={this.handleSubmit}>
+          Start Tracking Here!
+          <form className="register" onSubmit={this.handleSubmit}>
             <div>
-              <label htmlFor="first-name">First name</label>
+              <label htmlFor="first-name">First name </label>
               <input
+                className="first-name"
                 placeholder="First Name"
                 type="text"
                 name="first-name"
@@ -121,7 +116,7 @@ class LandingPage extends Component {
               {validationError}
             </div>
             <div>
-              <label htmlFor="last-name">Last name</label>
+              <label htmlFor="last-name">Last name </label>
               <input
                 type="text"
                 name="last-name"
@@ -134,7 +129,9 @@ class LandingPage extends Component {
               {validationError}
             </div>
 
-            <button type="submit">Sign Up</button>
+            <button className="submit" type="submit">
+              Track It!
+            </button>
           </form>
         </section>
       </div>
