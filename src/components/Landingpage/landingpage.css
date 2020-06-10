@@ -8,6 +8,7 @@
   position: relative;
   overflow: hidden;
   padding-top: 56.25%;
+  pointer-events: none;
 }
 
 .iframebox {
@@ -17,6 +18,7 @@
   width: 100%;
   height: 100%;
   border: 0;
+  pointer-events: none;
 }
 
 iframe .logo2 {
@@ -40,12 +42,14 @@ iframe .logo2 {
     display: block;
     align-items: center;
     text-align: center;
+    pointer-events: none;
   }
 
   .iframecontainer {
     position: relative;
     overflow: hidden;
     padding: 10%;
+    pointer-events: none;
   }
   /* iframe {
     position: relative;

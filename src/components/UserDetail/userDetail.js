@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-//import STORE from "./dummy-info";
 import { Link } from "react-router-dom";
 import PaceContext from "../PaceContext";
-import { Modal, Row, Col } from "antd";
+import { Modal } from "antd";
 import moment from "moment";
 import config from "../../config";
 import "./userdetail.css";
@@ -23,7 +22,6 @@ class UserDetail extends Component {
     super(props);
     this.state = {
       currentItem: "",
-      // currentUser: "",
       visible: false,
       pace: "",
       date: "",
@@ -105,9 +103,6 @@ class UserDetail extends Component {
     });
   };
   deleteRequest = (item) => {
-    // console.log(item);
-    //not working because don't have access to item.id
-    // console.log(this.state.currentItem);
     this.context.deleteItem(item.id);
     this.props.history.push("/welcome");
   };
@@ -118,7 +113,6 @@ class UserDetail extends Component {
   };
 
   editItem = () => {
-    //console.log(this.state);
     this.context.editItem(
       this.state.date,
       this.state.pace,
@@ -129,15 +123,11 @@ class UserDetail extends Component {
 
   render() {
     const userId = this.props.match.params.user_id;
-    // console.log(userId);
-    // console.log(this.props.match);
-    //changed to access context
+
     const entries = this.context.items.filter((item) => {
       // eslint-disable-next-line eqeqeq
       return item.user_id == userId;
     });
-    // console.log(this.context.items);
-    // console.log(entries);
 
     const records = entries.map((item) => {
       return (
@@ -154,7 +144,6 @@ class UserDetail extends Component {
           <Modal
             title="Edit Pace Record"
             visible={this.state.visible}
-            // onSubmit={this.handleSubmit}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
           >
@@ -168,6 +157,7 @@ class UserDetail extends Component {
                   id="date"
                   name="date"
                   onChange={this.handleDateChange}
+                  required
                 ></input>
               </div>
 
@@ -215,38 +205,34 @@ class UserDetail extends Component {
     return (
       <div className="userinfo-container">
         <h1>Pace Record</h1>
-        <Row align={"center"} type={"flex"}>
-          <Col>
-            <div className="graph">
-              {this.state.graphData && (
-                <LineChart
-                  width={360}
-                  height={200}
-                  data={this.state.graphData}
-                  margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="date" />
-                  <YAxis dataKey="pace" />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    dataKey="date"
-                    stroke="#7094db"
-                    activeDot={{ r: 8 }}
-                  />
-                  <Line type="monotone" dataKey="pace" stroke="#7094db" />
-                </LineChart>
-              )}
-            </div>
-          </Col>
-        </Row>
+        <div className="graph">
+          {this.state.graphData && (
+            <LineChart
+              width={360}
+              height={200}
+              data={this.state.graphData}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis dataKey="pace" />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="date"
+                stroke="#7094db"
+                activeDot={{ r: 8 }}
+              />
+              <Line type="monotone" dataKey="pace" stroke="#7094db" />
+            </LineChart>
+          )}
+        </div>
         <Link to={"/addpace"}>
           <input type="button" value="Add A Pace Entry" />
         </Link>{" "}

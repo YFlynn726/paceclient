@@ -87,6 +87,7 @@ class AddPace extends Component {
               id="date"
               name="date"
               onChange={this.handleDateChange}
+              required
             ></input>
           </div>
 
