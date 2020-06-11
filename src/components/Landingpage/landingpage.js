@@ -70,7 +70,6 @@ class LandingPage extends Component {
         <h1>Welcome to Pace!</h1>
         <h2>Do you wonder how you perform on your runs overtime? </h2>
 
-        {/* <h1 className="logo2">Pace!</h1> */}
         <div className="iframecontainer">
           <iframe
             className="iframebox"
@@ -79,7 +78,6 @@ class LandingPage extends Component {
             width="580"
             height="460"
             frameBorder="0"
-            // className="giphy-embed"
             allowFullScreen
           ></iframe>
         </div>

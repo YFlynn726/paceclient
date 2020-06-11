@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import PaceContext from "../PaceContext";
-import "./addPace.css";
-import moment from "moment";
 
-class AddPace extends Component {
+class EditItem extends Component {
   static contextType = PaceContext;
 
   constructor(props) {
     super(props);
     this.state = {
-      user_id: "",
+      currentItem: "",
       date: "",
       pace: "",
       content: "",
@@ -17,74 +15,52 @@ class AddPace extends Component {
   }
 
   handleDateChange = (event) => {
+    console.log(event.target.value);
     this.setState({
       date: event.target.value,
     });
   };
 
   handlePaceChange = (event) => {
+    console.log(event.target.value);
+
     this.setState({
       pace: event.target.value,
     });
   };
 
   handleContentChange = (event) => {
+    console.log(event.target.value);
+
     this.setState({
       content: event.target.value,
     });
   };
 
-  handleUserChange = (event) => {
-    this.setState({ user_id: event.target.value });
-    console.log(this.state.user_id);
-    console.log(event.target.value);
-  };
-
   handleSubmit = (event) => {
     event.preventDefault();
-    this.addItem();
+    this.editItem();
   };
 
-  addItem = () => {
-    this.context.addItem(
+  editItem = () => {
+    this.context.editItem(
       this.state.date,
       this.state.pace,
       this.state.content,
-      this.state.user_id
+      this.state.currentItem
     );
-    this.props.history.push("/welcome");
   };
 
   render() {
-    //access context
-    let options = this.context.users.map((user) => {
-      return (
-        <option key={user.id} value={user.id}>
-          {user.first_name} {user.last_name}
-        </option>
-      );
-    });
     return (
-      <div>
-        <h1>New Pace Record</h1>
-        <p className="para">
-          Please select your name to enter a new pace record.
-        </p>
-        <form className="record-pace" onSubmit={this.handleSubmit}>
-          <div>
-            <label className="selectoption">
-              Select Your Name:
-              <select onChange={this.handleUserChange}>{options}</select>
-            </label>
-          </div>
-          <br />
+      <div className="editForm">
+        <form className="edit-pace" onSubmit={this.handleSubmit}>
           <div className="date-section">
             <label className="add" htmlFor="date">
               Date:
             </label>
             <input
               type="date"
-              max={moment().format("YYYY-MM-DD")}
               id="date"
               name="date"
               onChange={this.handleDateChange}
@@ -104,8 +80,8 @@ class AddPace extends Component {
               placeholder="9.32"
               min="1"
               max="20"
-              required
               onChange={this.handlePaceChange}
+              required
             />
           </div>
           <div className="textbox">
@@ -115,12 +91,11 @@ class AddPace extends Component {
             <textarea
               className="text"
               name="pace-exp"
-              rows="15"
+              rows="10"
               onChange={this.handleContentChange}
               required
             ></textarea>
           </div>
-
           <button type="submit">Submit</button>
           <button type="reset">Reset</button>
         </form>
@@ -129,4 +104,4 @@ class AddPace extends Component {
   }
 }
 
-export default AddPace;
+export default EditItem;

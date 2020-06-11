@@ -15,7 +15,7 @@ class BoundaryError extends Component {
     if (this.state.hasError) {
       return <h2>Could not display this information.</h2>;
     }
-    return this.props.children;
+    return this.props.children || null;
   }
 }
 

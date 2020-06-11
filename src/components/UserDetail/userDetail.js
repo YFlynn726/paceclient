@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PaceContext from "../PaceContext";
+import ValidateError from "../ValidateError";
 import { Modal } from "antd";
 import moment from "moment";
 import config from "../../config";
@@ -47,7 +48,7 @@ class UserDetail extends Component {
           .map((item) => {
             let newItem = {};
             newItem.pace = item.pace;
-            newItem.date = moment(item.date).format("MM/DD/YYYY");
+            newItem.date = moment.utc(item.date).format("MM/DD/YYYY");
 
             return newItem;
           });
@@ -67,10 +68,13 @@ class UserDetail extends Component {
 
   handleOk = (e) => {
     console.log(e);
+    e.preventDefault();
+
+    document.querySelector(".edit-pace").submit();
     this.setState({
       visible: false,
     });
-    this.editItem();
+    //this.editItem();
   };
 
   handleCancel = (e) => {
@@ -81,27 +85,23 @@ class UserDetail extends Component {
   };
 
   handleDateChange = (event) => {
-    console.log(event.target.value);
     this.setState({
-      date: event.target.value,
+      date: event.currentTarget.value,
     });
   };
 
   handlePaceChange = (event) => {
-    console.log(event.target.value);
-
     this.setState({
-      pace: event.target.value,
+      pace: event.currentTarget.value,
     });
   };
 
   handleContentChange = (event) => {
-    console.log(event.target.value);
-
     this.setState({
-      content: event.target.value,
+      content: event.currentTarget.value,
     });
   };
+
   deleteRequest = (item) => {
     this.context.deleteItem(item.id);
     this.props.history.push("/welcome");
@@ -110,9 +110,13 @@ class UserDetail extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.editItem();
+    this.setState({
+      visible: false,
+    });
   };
 
   editItem = () => {
+    // console.log(this.state);
     this.context.editItem(
       this.state.date,
       this.state.pace,
@@ -133,7 +137,7 @@ class UserDetail extends Component {
       return (
         <div className="userdetails" key={item.id}>
           <li className="users">
-            Date: {moment(item.date).format("MMM Do YYYY")}
+            Date: {moment.utc(item.date).format("dddd, MMMM Do YYYY")}
           </li>
           <li className="users">Pace: {item.pace}</li>
           <li className="users">Run Experience: {item.content} </li>
@@ -142,10 +146,12 @@ class UserDetail extends Component {
           </button>
 
           <Modal
+            footer={null}
             title="Edit Pace Record"
             visible={this.state.visible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
+            required
           >
             <form className="edit-pace" onSubmit={this.handleSubmit}>
               <div className="date-section">
@@ -154,11 +160,13 @@ class UserDetail extends Component {
                 </label>
                 <input
                   type="date"
+                  max={moment().format("YYYY-MM-DD")}
                   id="date"
                   name="date"
                   onChange={this.handleDateChange}
                   required
-                ></input>
+                />
+                )}
               </div>
 
               <div className="pace-container">
@@ -187,8 +195,9 @@ class UserDetail extends Component {
                   rows="10"
                   onChange={this.handleContentChange}
                   required
-                ></textarea>
+                />
               </div>
+              <button type="submit">Submit</button>
             </form>
           </Modal>
 
@@ -208,7 +217,7 @@ class UserDetail extends Component {
         <div className="graph">
           {this.state.graphData && (
             <LineChart
-              width={360}
+              width={280}
               height={200}
               data={this.state.graphData}
               margin={{
