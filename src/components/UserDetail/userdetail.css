@@ -17,6 +17,13 @@
   padding: 30px;
 }
 
+.add {
+  color: white;
+  border: rgb(39, 97, 163) 3px solid;
+  background-color: rgb(39, 97, 163);
+  padding: 5px;
+}
+
 .edit {
   margin-right: 5px;
 }

@@ -240,8 +240,8 @@ class UserDetail extends Component {
             </LineChart>
           )}
         </div>
-        <Link to={"/addpace"}>
-          <input type="button" value="Add A Pace Entry" />
+        <Link className="add" to={"/addpace"}>
+          Add Pace Entry
         </Link>{" "}
         <ul className="recordlist">{records}</ul>
       </div>

@@ -79,7 +79,7 @@ class AddPace extends Component {
           </div>
           <br />
           <div className="date-section">
-            <label className="add" htmlFor="date">
+            <label className="date" htmlFor="date">
               Date:
             </label>
             <input
@@ -109,7 +109,7 @@ class AddPace extends Component {
             />
           </div>
           <div className="textbox">
-            <label className="add" htmlFor="pace-exp">
+            <label className="date" htmlFor="pace-exp">
               Run Experience:
             </label>
             <textarea
