@@ -165,7 +165,6 @@ class UserDetail extends Component {
                   onChange={this.handleDateChange}
                   required
                 />
-                )}
               </div>
 
               <div className="pace-container">
