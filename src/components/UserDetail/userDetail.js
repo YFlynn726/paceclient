@@ -29,7 +29,7 @@ class UserDetail extends Component {
     };
   }
 
-  componentDidMount() {
+  graphIt = () => {
     fetch(`${config.API_ENDPOINT}api/items`)
       .then((itemsRes) => {
         if (!itemsRes.ok) return itemsRes.json().then((e) => Promise.reject(e));
@@ -56,6 +56,10 @@ class UserDetail extends Component {
           graphData: graphData,
         });
       });
+  };
+
+  componentDidMount() {
+    this.graphIt();
   }
 
   showModal = (item) => {
@@ -154,9 +158,7 @@ class UserDetail extends Component {
           >
             <form className="edit-pace" onSubmit={this.handleSubmit}>
               <div className="date-section">
-                <label className="add" htmlFor="date">
-                  Date:
-                </label>
+                <label htmlFor="date">Date:</label>
                 <input
                   type="date"
                   max={moment().format("YYYY-MM-DD")}
@@ -168,11 +170,9 @@ class UserDetail extends Component {
               </div>
 
               <div className="pace-container">
-                <label className="add" htmlFor="pace">
-                  Pace Time:
-                </label>
+                <label htmlFor="pace">Pace:</label>
                 <input
-                  classnumber="number"
+                  id="pace"
                   type="number"
                   name="pace"
                   step="0.01"
@@ -184,11 +184,11 @@ class UserDetail extends Component {
                 />
               </div>
               <div className="textbox">
-                <label className="add" htmlFor="pace-exp">
-                  Run Experience:
-                </label>
+                <label htmlFor="pace-exp">Run Experience: </label>
+
                 <textarea
                   className="text"
+                  id="pace-exp"
                   name="pace-exp"
                   rows="10"
                   onChange={this.handleContentChange}

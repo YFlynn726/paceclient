@@ -89,15 +89,15 @@ class AddPace extends Component {
               name="date"
               onChange={this.handleDateChange}
               required
-            ></input>
+            />
           </div>
 
           <div className="pace-container">
-            <label className="add" htmlFor="pace">
-              Pace Time:
-            </label>
+            <label htmlFor="pace">Pace:</label>
+
             <input
               classnumber="number"
+              id="pace"
               type="number"
               name="pace"
               step="0.01"
@@ -114,6 +114,7 @@ class AddPace extends Component {
             </label>
             <textarea
               className="text"
+              id="pace-exp"
               name="pace-exp"
               rows="15"
               onChange={this.handleContentChange}
