@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PaceContext from "../PaceContext";
-import ValidateError from "../ValidateError";
 import { Modal } from "antd";
 import moment from "moment";
 import config from "../../config";
