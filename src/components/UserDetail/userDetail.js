@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PaceContext from "../PaceContext";
 import { Modal } from "antd";
+import "antd/dist/antd.css";
 import moment from "moment";
 import config from "../../config";
 import "./userdetail.css";
@@ -120,11 +121,15 @@ class UserDetail extends Component {
 
   editItem = () => {
     // console.log(this.state);
+    this.setState({
+      graphData: null,
+    });
     this.context.editItem(
       this.state.date,
       this.state.pace,
       this.state.content,
-      this.state.currentItem
+      this.state.currentItem,
+      this.graphIt
     );
   };
 

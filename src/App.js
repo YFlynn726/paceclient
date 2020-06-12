@@ -6,7 +6,7 @@ import UserDetail from "./components/UserDetail/userDetail";
 import Nav from "./components/Nav/Nav";
 import config from "./config";
 import BoundaryError from "./components/BoundaryError";
-import "./app.css";
+import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PaceContext from "./components/PaceContext";
 
@@ -75,7 +75,7 @@ class App extends Component {
     });
   };
 
-  editItem = (date, pace, content, item) => {
+  editItem = (date, pace, content, item, graphIt) => {
     const updatedItem = {
       date: date,
       pace: pace,
@@ -93,6 +93,7 @@ class App extends Component {
       })
       .then((data) => {
         this.fetchInIt();
+        graphIt();
       })
       .catch((error) => {
         console.log("Request failure: ", error);
