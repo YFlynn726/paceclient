@@ -27,7 +27,6 @@ class App extends Component {
       content: content,
       user_id,
     };
-    console.log(newItem);
 
     fetch(`${config.API_ENDPOINT}api/items`, {
       method: "POST",
@@ -40,8 +39,6 @@ class App extends Component {
         return res.json();
       })
       .then((data) => {
-        console.log("Request success: ", data);
-
         this.setState({
           items: [...this.state.items, data],
           id: Response.id,
@@ -140,7 +137,6 @@ class App extends Component {
         return res.json();
       })
       .then((data) => {
-        console.log("Request success: ", data);
         this.setState({
           id: Response.id,
           users: [...this.state.users, data],

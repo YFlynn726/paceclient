@@ -68,7 +68,14 @@ class UserDetail extends Component {
       visible: true,
       currentItem: item,
     });
+    console.log(this.state.currentItem);
   };
+
+  // getEditDetails = (item) => {
+  //   this.setState({
+  //     currentItem: item,
+  //   });
+  // };
 
   handleOk = (e) => {
     console.log(e);
@@ -78,7 +85,6 @@ class UserDetail extends Component {
     this.setState({
       visible: false,
     });
-    //this.editItem();
   };
 
   handleCancel = (e) => {
@@ -169,6 +175,7 @@ class UserDetail extends Component {
                   max={moment().format("YYYY-MM-DD")}
                   id="date"
                   name="date"
+                  value={item.date}
                   onChange={this.handleDateChange}
                   required
                 />
@@ -184,6 +191,7 @@ class UserDetail extends Component {
                   placeholder="9.32"
                   min="1"
                   max="20"
+                  value={item.pace}
                   onChange={this.handlePaceChange}
                   required
                 />
@@ -196,6 +204,7 @@ class UserDetail extends Component {
                   id="pace-exp"
                   name="pace-exp"
                   rows="10"
+                  value={item.content}
                   onChange={this.handleContentChange}
                   required
                 />

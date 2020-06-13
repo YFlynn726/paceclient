@@ -36,8 +36,6 @@ class AddPace extends Component {
 
   handleUserChange = (event) => {
     this.setState({ user_id: event.target.value });
-    console.log(this.state.user_id);
-    console.log(event.target.value);
   };
 
   handleSubmit = (event) => {
