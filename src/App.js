@@ -20,7 +20,7 @@ class App extends Component {
     editItem: this.editItem,
   };
 
-  //adding a pace record
+  //adding a new item record and posting to database items endpoint
   addItem = (date, pace, content, user_id) => {
     const newItem = {
       pace: pace,
@@ -51,7 +51,7 @@ class App extends Component {
       });
   };
 
-  //deleting a pace record
+  //deleting a pace record with a delete method
   deleteItem = (itemId) => {
     const newItemlist = this.state.items.filter((item) => {
       return item.id !== itemId;
@@ -74,14 +74,13 @@ class App extends Component {
     });
   };
 
-  //edit pace record
+  //edit pace record and updating db with patch method
   editItem = (date, pace, content, item, graphIt) => {
     const updatedItem = {
       date: date,
       pace: pace,
       content: content,
     };
-    console.log(updatedItem);
     fetch(`${config.API_ENDPOINT}api/items/${item.id}`, {
       method: "PATCH",
       headers: {
@@ -101,7 +100,7 @@ class App extends Component {
       });
   };
 
-  //fetch all users and items(pace records)
+  //fetch all users and items(pace records) using get method
   componentDidMount() {
     this.fetchInIt();
   }
@@ -125,7 +124,7 @@ class App extends Component {
       });
   };
 
-  //add a new user
+  //add a new user using post method to users endpoint
   addUser = (first_name, last_name) => {
     const newUser = {
       first_name: first_name,

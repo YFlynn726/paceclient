@@ -30,6 +30,7 @@ class UserDetail extends Component {
     };
   }
 
+  //getting graph data by fetching items and updating graphData with any new points
   graphIt = () => {
     fetch(`${config.API_ENDPOINT}api/items`)
       .then((itemsRes) => {
@@ -63,6 +64,9 @@ class UserDetail extends Component {
     this.graphIt();
   }
 
+  //constolls visibility of modal(toggles using state)
+  //uses current item (an object) to get info of that current pace to edit
+  //using currentItem to update state of pace, date, and item in order to use for input values for pre-filled inputs in modal form
   showModal = (item) => {
     this.setState({
       visible: true,
@@ -71,9 +75,9 @@ class UserDetail extends Component {
       pace: item.pace,
       content: item.content,
     });
-    console.log(item);
   };
 
+  //modal function - will only render when called in jsx instead of including in map method(more effecient)
   renderModal = (item) => {
     return (
       <Modal
@@ -132,47 +136,35 @@ class UserDetail extends Component {
     );
   };
 
-  handleOk = (e) => {
-    console.log(e);
-    e.preventDefault();
-
-    document.querySelector(".edit-pace").submit();
-    this.setState({
-      visible: false,
-    });
-    //this.editItem();
-  };
-
-  handleCancel = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-  };
-
+  //captures input values entered for date input
   handleDateChange = (event) => {
     this.setState({
       date: event.target.value,
     });
   };
 
+  //captures input values entered for pace input
   handlePaceChange = (event) => {
     this.setState({
       pace: event.target.value,
     });
   };
 
+  //captures input values entered for content input
   handleContentChange = (event) => {
     this.setState({
       content: event.target.value,
     });
   };
 
+  //delete item
   deleteRequest = (item) => {
     this.context.deleteItem(item.id);
     this.props.history.push("/welcome");
   };
 
+  //calls editItem function to update context
+  //changes state for Modal(toggles), once click submit modal disappears
   handleSubmit = (event) => {
     event.preventDefault();
     this.editItem();
@@ -181,8 +173,9 @@ class UserDetail extends Component {
     });
   };
 
+  //graphData is reset
+  //context is updated
   editItem = () => {
-    // console.log(this.state);
     this.setState({
       graphData: null,
     });
