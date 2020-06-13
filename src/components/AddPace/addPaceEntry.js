@@ -6,6 +6,7 @@ import moment from "moment";
 class AddPace extends Component {
   static contextType = PaceContext;
 
+  //states for items(pace records)
   constructor(props) {
     super(props);
     this.state = {
@@ -16,33 +17,39 @@ class AddPace extends Component {
     };
   }
 
+  //capture input for date then update state
   handleDateChange = (event) => {
     this.setState({
       date: event.target.value,
     });
   };
 
+  //capture input for pace then update state
   handlePaceChange = (event) => {
     this.setState({
       pace: event.target.value,
     });
   };
 
+  //capture input for content info then update state
   handleContentChange = (event) => {
     this.setState({
       content: event.target.value,
     });
   };
 
+  //capture which user selected in order to add entry to correct user with their user_id
   handleUserChange = (event) => {
     this.setState({ user_id: event.target.value });
   };
 
+  //when submit button clicked the item will be sent to addItem function where it will be posted to db
   handleSubmit = (event) => {
     event.preventDefault();
     this.addItem();
   };
 
+  //context updated and user will be redirected to welcome page when new item submitted
   addItem = () => {
     this.context.addItem(
       this.state.date,
@@ -82,6 +89,7 @@ class AddPace extends Component {
             </label>
             <input
               type="date"
+              //using momemnt to format date
               max={moment().format("YYYY-MM-DD")}
               id="date"
               name="date"

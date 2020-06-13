@@ -6,6 +6,7 @@ import ValidationError from "../ValidateError";
 class LandingPage extends Component {
   static contextType = PaceContext;
 
+  //state for users names
   constructor(props) {
     super(props);
     this.state = {
@@ -15,18 +16,21 @@ class LandingPage extends Component {
     };
   }
 
+  //capture first name input
   handlefnameChange = (event) => {
     this.setState({
       first_name: event.target.value,
     });
   };
 
+  //capture last name input
   handlelnameChange = (event) => {
     this.setState({
       last_name: event.target.value,
     });
   };
 
+  //when submit button clicked validate entries meet criteria then send to addUser function to post in DB
   handleSubmit = (event) => {
     event.preventDefault();
     const isValid = this.validateName();
@@ -44,12 +48,14 @@ class LandingPage extends Component {
     this.props.history.push("/welcome");
   };
 
+  //if any errors, it will trigger this
   updateError = (err) => {
     this.setState({
       error: err,
     });
   };
 
+  //to check if entries meet criteria if not then error will be called
   validateName = () => {
     const firstName = this.state.first_name.trim();
     const lastName = this.state.last_name.trim();

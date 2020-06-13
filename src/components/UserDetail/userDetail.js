@@ -30,6 +30,7 @@ class UserDetail extends Component {
     };
   }
 
+  //data for graph when item is added or edited
   graphIt = () => {
     fetch(`${config.API_ENDPOINT}api/items`)
       .then((itemsRes) => {
@@ -63,6 +64,7 @@ class UserDetail extends Component {
     this.graphIt();
   }
 
+  //when edit button is clicked modal will show for the current pace record selected
   showModal = (item) => {
     this.setState({
       visible: true,
@@ -74,69 +76,81 @@ class UserDetail extends Component {
   // getEditDetails = (item) => {
   //   this.setState({
   //     currentItem: item,
+  //     pace: "",
+  //     date: "",
+  //     content: "",
   //   });
   // };
 
-  handleOk = (e) => {
-    console.log(e);
-    e.preventDefault();
-
-    document.querySelector(".edit-pace").submit();
-    this.setState({
-      visible: false,
-    });
-  };
-
   handleCancel = (e) => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible: false,
     });
   };
 
-  handleDateChange = (event) => {
+  //edit form - input date change
+  handleDateChange = ({ target }) => {
+    const { value: date } = target;
+    console.log(date);
     this.setState({
-      date: event.currentTarget.value,
+      currentItem: {
+        ...this.state.currentItem,
+        date,
+      },
+      date,
     });
   };
 
-  handlePaceChange = (event) => {
+  //edit form - to capture pace change
+  handlePaceChange = ({ target }) => {
+    const { value: pace } = target;
     this.setState({
-      pace: event.currentTarget.value,
+      currentItem: {
+        ...this.state.currentItem,
+        pace,
+      },
+      pace,
     });
   };
 
-  handleContentChange = (event) => {
+  //edit form - captures content change
+  handleContentChange = ({ target }) => {
+    const { value: content } = target;
     this.setState({
-      content: event.currentTarget.value,
+      currentItem: {
+        ...this.state.currentItem,
+        content,
+      },
+      content,
     });
   };
 
+  //delete button method to call and send to db with item id
   deleteRequest = (item) => {
     this.context.deleteItem(item.id);
     this.props.history.push("/welcome");
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.editItem();
-    this.setState({
-      visible: false,
+  //submit button for edit form - changes state to make modal dissapear when user clicks submit
+  //send edit info to edit item function in app(updates db)
+  handleSubmit = () => {
+    this.editItem().then(() => {
+      this.setState({
+        visible: false,
+        graphData: null,
+        currentItem: "",
+      });
     });
   };
 
+  //resets graphData in order to update when item is updated
+  //updateds context
   editItem = () => {
-    // console.log(this.state);
-    this.setState({
-      graphData: null,
-    });
-    this.context.editItem(
-      this.state.date,
-      this.state.pace,
-      this.state.content,
-      this.state.currentItem,
-      this.graphIt
-    );
+    const { currentItem } = this.state;
+    const { date, pace, content } = currentItem;
+    console.log(this.state.currentItem);
+    this.context.editItem(date, pace, content, currentItem, this.graphIt);
   };
 
   render() {
@@ -167,16 +181,20 @@ class UserDetail extends Component {
             onCancel={this.handleCancel}
             required
           >
-            <form className="edit-pace" onSubmit={this.handleSubmit}>
+            <form className="edit-pace">
               <div className="date-section">
                 <label htmlFor="date">Date:</label>
                 <input
                   type="date"
-                  max={moment().format("YYYY-MM-DD")}
+                  max={moment.utc().format("YYYY-MM-DD")}
                   id="date"
                   name="date"
-                  value={item.date}
-                  onChange={this.handleDateChange}
+                  value={moment
+                    .utc(this.state.currentItem.date)
+                    .format("YYYY-MM-DD")}
+                  onChange={(e) => this.handleDateChange(e)}
+                  // value={item.date}
+                  // onChange={this.handleDateChange}
                   required
                 />
               </div>
@@ -188,11 +206,12 @@ class UserDetail extends Component {
                   type="number"
                   name="pace"
                   step="0.01"
-                  placeholder="9.32"
                   min="1"
                   max="20"
-                  value={item.pace}
-                  onChange={this.handlePaceChange}
+                  value={this.state.currentItem.pace}
+                  onChange={(e) => this.handlePaceChange(e)}
+                  // value={item.pace}
+                  // onChange={this.handlePaceChange}
                   required
                 />
               </div>
@@ -204,12 +223,16 @@ class UserDetail extends Component {
                   id="pace-exp"
                   name="pace-exp"
                   rows="10"
-                  value={item.content}
-                  onChange={this.handleContentChange}
+                  value={this.state.currentItem.content}
+                  onChange={(e) => this.handleContentChange(e)}
+                  // value={item.content}
+                  // onChange={this.handleContentChange}
                   required
                 />
               </div>
-              <button type="submit">Submit</button>
+              <button type="submit" onClick={this.handleSubmit}>
+                Submit
+              </button>
             </form>
           </Modal>
 

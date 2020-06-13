@@ -20,6 +20,7 @@ class App extends Component {
     editItem: this.editItem,
   };
 
+  //adding a pace record
   addItem = (date, pace, content, user_id) => {
     const newItem = {
       pace: pace,
@@ -50,6 +51,7 @@ class App extends Component {
       });
   };
 
+  //deleting a pace record
   deleteItem = (itemId) => {
     const newItemlist = this.state.items.filter((item) => {
       return item.id !== itemId;
@@ -72,12 +74,14 @@ class App extends Component {
     });
   };
 
+  //edit pace record
   editItem = (date, pace, content, item, graphIt) => {
     const updatedItem = {
       date: date,
       pace: pace,
       content: content,
     };
+    console.log(updatedItem);
     fetch(`${config.API_ENDPOINT}api/items/${item.id}`, {
       method: "PATCH",
       headers: {
@@ -97,6 +101,7 @@ class App extends Component {
       });
   };
 
+  //fetch all users and items(pace records)
   componentDidMount() {
     this.fetchInIt();
   }
@@ -120,6 +125,7 @@ class App extends Component {
       });
   };
 
+  //add a new user
   addUser = (first_name, last_name) => {
     const newUser = {
       first_name: first_name,
