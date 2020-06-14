@@ -137,6 +137,10 @@ class LandingPage extends Component {
             <button className="submit" type="submit">
               Track It!
             </button>
+            <p>
+              Already created a profile? Click on community dashboard to check
+              your progress!
+            </p>
           </form>
         </section>
       </div>

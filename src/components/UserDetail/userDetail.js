@@ -77,6 +77,13 @@ class UserDetail extends Component {
     });
   };
 
+  handleCancel = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
   //modal function - will only render when called in jsx instead of including in map method(more effecient)
   renderModal = (item) => {
     return (
