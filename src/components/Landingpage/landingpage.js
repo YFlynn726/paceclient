@@ -74,7 +74,7 @@ class LandingPage extends Component {
       // eslint-disable-next-line eqeqeq
       if (
         // eslint-disable-next-line eqeqeq
-        currentUser.first_name == firstName ||
+        currentUser.first_name == firstName &&
         // eslint-disable-next-line eqeqeq
         currentUser.last_name == lastName
       ) {
