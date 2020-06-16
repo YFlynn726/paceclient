@@ -34,7 +34,7 @@ class LandingPage extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const isValid = this.validateName();
-    if (!isValid.error) {
+    if (isValid) {
       //update DB
       this.addUser();
     } else {
@@ -57,15 +57,32 @@ class LandingPage extends Component {
 
   //to check if entries meet criteria if not then error will be called
   validateName = () => {
+    let valid = true;
     const firstName = this.state.first_name.trim();
     const lastName = this.state.last_name.trim();
     const result = { error: false, value: firstName, lastName };
+
     if (firstName.length <= 2 || lastName.length <= 2) {
       result.error = true;
       result.value =
         "First Name and Last Name must be at least 3 characters long";
+      valid = false;
     }
-    return result;
+
+    for (let i = 0; i < this.context.users.length; i++) {
+      let currentUser = this.context.users[i];
+      // eslint-disable-next-line eqeqeq
+      if (
+        // eslint-disable-next-line eqeqeq
+        currentUser.first_name == firstName ||
+        // eslint-disable-next-line eqeqeq
+        currentUser.last_name == lastName
+      ) {
+        alert("Name is already taken");
+        valid = false;
+      }
+    }
+    return valid;
   };
 
   render() {
